@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <number-input :myNum="myNum" @newAdded="newInput" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NumberInput from "./components/NumberInput.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    NumberInput,
+  },
+
+  // sends an array of initial input/data value to the child component
+  data() {
+    return {
+      myNum: [10, 20, 25, 25, 20],
+    };
+  },
+
+  // Add an input value to existing array of input values
+  methods: {
+    newInput(numbr) {
+      this.myNum.push(numbr);
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
